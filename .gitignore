@@ -1,0 +1,7 @@
+.alpackages/
+.alcache/
+.vscode/settings.json
+.vscode/.alcache/
+.vscode/.alpackages/
+*.app
+*.symbolcache

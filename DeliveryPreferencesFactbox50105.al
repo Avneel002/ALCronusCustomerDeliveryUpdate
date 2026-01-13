@@ -1,7 +1,7 @@
-page 50105 "Delivery Preferences FactBox"
+page 50105 "DeliveryPreferencesFactBox"
 {
     PageType = CardPart;
-    SourceTable = CustomerTableExt50101;
+    SourceTable = Customer;
     ApplicationArea = All;
     Caption = 'Delivery Preferences';
 
@@ -9,27 +9,31 @@ page 50105 "Delivery Preferences FactBox"
     {
         area(content)
         {
-            group(Group)
+            repeater(Group)
             {
-                field("DeliveryTimePreference"; "DeliveryTimePreference")
+                field(DeliveryTimePreference; Rec.DeliveryTimePreference)
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    Editable = True;
+
                 }
-                field("DeliveryInstructions"; "DeliveryInstructions")
+                field(DeliveryInstructions; Rec.DeliveryInstructions)
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    Editable = True;
+
                 }
-                field("DeliveryContactName"; "DeliveryContactName")
+                field(DeliveryContactName; Rec.DeliveryContactName)
                 {
+
                     ApplicationArea = All;
-                    Editable = false;
+                    Editable = True;
+
                 }
-                field("DeliveryContactPhone"; "DeliveryContactPhone")
+                field(DeliveryContactPhone; Rec.DeliveryContactPhone)
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    Editable = True;
                 }
             }
         }

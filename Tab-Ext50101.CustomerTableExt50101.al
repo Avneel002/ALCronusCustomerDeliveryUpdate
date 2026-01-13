@@ -11,13 +11,25 @@ tableextension 50101 CustomerTableExt50101 extends Customer
         {
             Caption = 'Delivery instructions';
             DataClassification = ToBeClassified;
+            trigger OnValidate()
+            begin
+                if StrLen(DeliveryInstructions) > 250 then
+                    Error('the length of this text is too long')
+
+            end;
         }
-        field(50102; "DeliveryContactPhone"; Text[20])
+        field(50102; DeliveryContactPhone; Text[20])
         {
             Caption = 'Delivery Contact Phone';
             DataClassification = ToBeClassified;
+            trigger OnValidate()
+            begin
+                if (DeliveryContactName <> '') and (DeliveryContactPhone = '') then
+                    Error('The User shall not be able to save the record until a phone number is provided.')
+
+            end;
         }
-        field(50103; "DeliveryTimePreference"; Enum "DeliveryTimePreference")
+        field(50103; DeliveryTimePreference; Enum "DeliveryTimePreference")
         {
             caption = 'Delivery Time Preference';
             trigger OnValidate()

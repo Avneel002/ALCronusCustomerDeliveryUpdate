@@ -4,15 +4,15 @@ enum 50100 DeliveryTimePreference
 
     value(0; "0; Morning")
     {
-        Caption = '6-12';
+        Caption = '6-12 Morning';
     }
     value(1; "1; Afternoon")
     {
-        Caption = '13-18';
+        Caption = '13-18 Afternoon';
     }
     value(2; "2; Evening")
     {
-        Caption = '19-22';
+        Caption = '19-22 Evening';
     }
 
 }

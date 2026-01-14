@@ -1,13 +1,13 @@
-tableextension 50101 CustomerTableExt50101 extends Customer
+tableextension 90101 CustomerTableExt50101 extends Customer
 {
     fields
     {
-        field(50100; DeliveryContactName; Text[50])
+        field(90100; DeliveryContactName; Text[50])
         {
             Caption = 'Delivery Contact Name';
             DataClassification = ToBeClassified;
         }
-        field(50101; DeliveryInstructions; Text[250])
+        field(90101; DeliveryInstructions; Text[250])
         {
             Caption = 'Delivery instructions';
             DataClassification = ToBeClassified;
@@ -18,7 +18,7 @@ tableextension 50101 CustomerTableExt50101 extends Customer
 
             end;
         }
-        field(50102; DeliveryContactPhone; Text[20])
+        field(90102; DeliveryContactPhone; Text[20])
         {
             Caption = 'Delivery Contact Phone';
             DataClassification = ToBeClassified;
@@ -29,7 +29,7 @@ tableextension 50101 CustomerTableExt50101 extends Customer
 
             end;
         }
-        field(50103; DeliveryTimePreference; Enum "DeliveryTimePreference")
+        field(90103; DeliveryTimePreference; Enum "DeliveryTimePreference")
         {
             caption = 'Delivery Time Preference';
             trigger OnValidate()

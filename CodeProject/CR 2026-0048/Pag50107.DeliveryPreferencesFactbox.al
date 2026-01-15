@@ -1,4 +1,4 @@
-page 50107 DeliveryPreferencesFactBoxMgt
+page 90108 DeliveryPreferencesFactBoxMgt
 {
     PageType = CardPart;
     SourceTable = "Sales Header";

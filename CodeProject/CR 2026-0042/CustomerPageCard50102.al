@@ -1,6 +1,6 @@
 using Microsoft.Sales.Customer;
 
-pageextension 50102 CustomerPageExtCard extends "Customer Card"
+pageextension 90102 CustomerPageExtCard extends "Customer Card"
 {
     layout
     {

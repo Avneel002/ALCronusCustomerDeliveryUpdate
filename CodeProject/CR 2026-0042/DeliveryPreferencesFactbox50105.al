@@ -1,4 +1,4 @@
-page 50105 "DeliveryPreferencesFactBox"
+page 90104 "DeliveryPreferencesFactBox"
 {
     PageType = CardPart;
     SourceTable = Customer;

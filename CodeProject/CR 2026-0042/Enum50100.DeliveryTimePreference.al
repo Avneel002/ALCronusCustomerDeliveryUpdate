@@ -1,4 +1,4 @@
-enum 50100 DeliveryTimePreference
+enum 90100 DeliveryTimePreference
 {
     Extensible = true;
 

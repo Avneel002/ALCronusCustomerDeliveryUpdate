@@ -1,6 +1,6 @@
 codeunit 90105 "DeliveryPreferenceMgt."
 {
-    ubtype = EventSubsciber;
+
     procedure CopyFromCustomer(CustomerNo: Code[20]; Var SalesHeader: Record "Sales Header")
     var
         Customer: Record Customer;

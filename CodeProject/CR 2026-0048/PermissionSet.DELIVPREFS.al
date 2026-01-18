@@ -6,6 +6,8 @@ permissionset 90109 "DELIV-PREFS"
     Permissions =
         tabledata Customer = R,
         tabledata "Sales Header" = RIMD,
+        table "Sales Header" = X,
         codeunit "DeliveryPreferenceMgt." = X,
-        page "DeliveryPreferencesFactBoxMgt" = X;
+        page "DeliveryPreferencesFactBox" = X,
+        page "Sales Order" = X;
 }

@@ -15,6 +15,7 @@ page 90108 DeliveryPreferencesFactBoxMgt
                 {
                     ApplicationArea = All;
                     Caption = 'Time Preference';
+
                 }
 
                 field(DeliveryInstructions; Rec.DeliveryInstructions)

@@ -4,19 +4,35 @@ codeunit 90105 "DeliveryPreferenceMgt."
     var
         Customer: Record Customer;
     begin
-        if not Customer.Get(CustomerNo) then
+        if not Customer.Get(CustomerNo) then begin
             Error('Customer is not found');
 
-        SalesHeader.DeliveryTimePreference := Customer.DeliveryTimePreference;
-        SalesHeader.DeliveryContactName := Customer.DeliveryContactName;
-        SalesHeader.DeliveryContactPhone := Customer.DeliveryContactPhone;
-        SalesHeader.DeliveryInstructions := Customer.DeliveryInstructions;
+            SalesHeader.DeliveryTimePreference := Customer.DeliveryTimePreference;
+            SalesHeader.DeliveryContactName := Customer.DeliveryContactName;
+            SalesHeader.DeliveryContactPhone := Customer.DeliveryContactPhone;
+            SalesHeader.DeliveryInstructions := Customer.DeliveryInstructions;
+        end;
     end;
 
-    procedure AutoFillingDelivery(CustomerNo: Code[20]; var SalesHeader: Record "Sales Header")
+    procedure CompleteDeliveryInformation(SalesHeader: Record "Sales Header"): boolean
+    var
+        DeliveryTimePreferenceEnum: Enum "DeliveryTimePreference";
     begin
-        CopyFromCustomer(CustomerNo, SalesHeader);
+        if SalesHeader.DeliveryTimePreference = DeliveryTimePreferenceEnum::"nothing" then
+            exit(false);
+        if (SalesHeader.DeliveryInstructions <> '') or (SalesHeader.DeliveryContactPhone <> '') then
+            exit(true);
+
+        exit(false);
     end;
+
+    procedure GetCompletionStatus(SalesHeader: Record "Sales Header"): Text
+    begin
+        CompleteDeliveryInformation(SalesHeader);
+        Message('Delivery is ready for transport');
+
+    end;
+
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnAfterValidateEvent', 'Sell-to Customer No.', false, false)]
     local procedure OnAfterValidateSellToCustomer(
@@ -24,7 +40,6 @@ codeunit 90105 "DeliveryPreferenceMgt."
         var xRec: Record "Sales Header";
         CurrFieldNo: Integer)
     begin
-        if Rec."Sell-to Customer No." <> '' then
-            CopyFromCustomer(Rec."Sell-to Customer No.", Rec);
+        CopyFromCustomer(Rec."Sell-to Customer No.", Rec);
     end;
 }

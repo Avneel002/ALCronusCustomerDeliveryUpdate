@@ -14,5 +14,9 @@ enum 90100 DeliveryTimePreference
     {
         Caption = '19-22 Evening';
     }
+    value(3; "nothing")
+    {
+        Caption = 'nothing';
+    }
 
 }

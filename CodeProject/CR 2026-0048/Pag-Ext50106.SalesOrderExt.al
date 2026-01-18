@@ -62,6 +62,9 @@ pageextension 90107 SalesOrderExt extends "Sales Order"
                         DeliveryMgt: Codeunit "DeliveryPreferenceMgt.";
                         DeliveryNotification: Notification;
                     begin
+                        if DeliveryMgt.CompleteDeliveryInformation(Rec) then begin
+                            Message('Delivery fields are finsihed');
+                        end;
                         DeliveryNotification.Message('Delivery has been verified.');
                     end;
                 }

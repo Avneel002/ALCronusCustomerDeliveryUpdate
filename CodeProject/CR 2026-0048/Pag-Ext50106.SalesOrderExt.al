@@ -2,7 +2,6 @@ pageextension 90107 SalesOrderExt extends "Sales Order"
 {
     layout
     {
-
         addafter("Shipping and Billing")
         {
             group("Delivery Preferences")
@@ -22,6 +21,12 @@ pageextension 90107 SalesOrderExt extends "Sales Order"
                     MultiLine = true;
                 }
 
+                field(DeliveryContactNo; Rec.DeliveryContactNo)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Delivery Contact Number';
+                }
+
                 field(DeliveryContactName; Rec.DeliveryContactName)
                 {
                     ApplicationArea = All;
@@ -35,24 +40,25 @@ pageextension 90107 SalesOrderExt extends "Sales Order"
                 }
             }
         }
+
         addfirst(factboxes)
         {
-            part(DeliveryFactBox; "DeliveryPreferencesFactBoxMgt")
+            part(DeliveryPrefencesFactBoxMgt; DeliveryPreferencesFactBoxMgt)
             {
                 ApplicationArea = All;
                 Caption = 'Delivery Preferences';
+                SubPageLink = "No." = field("No."), "Document Type" = field("Document Type");
             }
         }
     }
 
     actions
     {
-
         addlast(processing)
         {
             group(Delivery)
             {
-                Caption = 'Delivery';
+                Caption = 'Check Delivery';
                 action(VerifyDeliveryDetails)
                 {
                     ApplicationArea = All;
@@ -64,6 +70,12 @@ pageextension 90107 SalesOrderExt extends "Sales Order"
                     begin
                         if DeliveryMgt.CompleteDeliveryInformation(Rec) then begin
                             Message('Delivery fields are finsihed');
+                        end;
+                        DeliveryNotification.Scope(NotificationScope::LocalScope);
+                        DeliveryNotification.Message(DeliveryMgt.GetCompletionStatus(Rec));
+                        if not DeliveryMgt.CompleteDeliveryInformation(Rec) then begin
+                            DeliveryNotification.AddAction('fillout the delivery details', Codeunit::"DeliveryPreferenceMgt.", 'go to delivery tab');
+                            DeliveryNotification.SetData('No', Rec."No.");
                         end;
                         DeliveryNotification.Message('Delivery has been verified.');
                     end;

@@ -3,46 +3,40 @@ page 90108 DeliveryPreferencesFactBoxMgt
     PageType = CardPart;
     SourceTable = "Sales Header";
     Caption = 'Delivery Preferences';
-    Editable = True;
+    ApplicationArea = All;
+
     layout
     {
         area(Content)
         {
-            group(DeliveryInfo)
+
+            field(DeliveryTimePref; Rec.DeliveryTimePreference)
             {
-                Caption = 'Delivery Instructions';
-                field(DeliveryTimePref; Rec.DeliveryTimePreference)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Time Preference';
+                ApplicationArea = All;
+                Caption = 'Time Preference';
+            }
 
-                }
+            field(DeliveryInstructions; Rec.DeliveryInstructions)
+            {
+                ApplicationArea = All;
+                Caption = 'Instructions';
+                MultiLine = true;
+            }
 
-                field(DeliveryInstructions; Rec.DeliveryInstructions)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Instructions';
-                    MultiLine = true;
-                }
 
-                group(ContactInfo)
-                {
-                    Caption = 'Contact';
+            field(DeliveryContactName; Rec.DeliveryContactName)
+            {
+                caption = 'Delivery Contact';
+                ApplicationArea = All;
+            }
 
-                    field(DeliveryContactName; Rec.DeliveryContactName)
-                    {
-                        caption = 'Delivery Contact';
-                        ApplicationArea = All;
-                        ShowCaption = false;
-                    }
+            field(DeliveryContactPhone; Rec.DeliveryContactPhone)
+            {
+                caption = 'Delivery Phone Number';
+                ApplicationArea = All;
 
-                    field(DeliveryContactPhone; Rec.DeliveryContactPhone)
-                    {
-                        ApplicationArea = All;
-                        ShowCaption = false;
-                    }
-                }
             }
         }
     }
 }
+
